@@ -16,6 +16,7 @@ import 'tensor.dart';
 /// TensorFlowLite interpreter for running inference on a model.
 class Interpreter {
   final Pointer<TfLiteInterpreter> _interpreter;
+
   bool _deleted = false;
   bool _allocated = false;
   int _lastNativeInferenceDurationMicroSeconds = 0;
@@ -33,6 +34,9 @@ class Interpreter {
     // Allocate tensors when interpreter is created
     allocateTensors();
   }
+
+  get outputTensorCount => _outputTensorsCount;
+  get inputTensorCount => _inputTensorsCount;
 
   /// Creates interpreter from model
   ///
